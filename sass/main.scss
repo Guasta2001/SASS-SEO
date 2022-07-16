@@ -1,0 +1,114 @@
+$boxColor: aqua;
+$boxDesktop: 300px;
+
+
+.box-responsive {
+    width: $boxDesktop * 2; 
+    height: auto;
+    padding: 20px;
+}
+
+
+$bgColor: dark; 
+
+@if $bgColor != dark { 
+    .box-responsive {
+        background-color: black;
+        color: white;
+    }
+} @else if $bgColor == light {
+    .box-responsive {
+        background-color: beige;
+        color: grey;
+    }
+} @else {
+    .box-responsive {
+        background-color: orange;
+        color: blue;
+    }
+}
+
+@for $i from 1 through 6 {
+    .headings-#{$i} {
+        font-size: 12px * $i;
+    }
+}
+@for $i from 1 to 11 {
+    .col-#{$i} {
+        width: 100% / $i;
+    }
+}
+
+@each $background in red, green, blue, orange, violet {
+    .bg-#{$background} {
+        background-color: $background;
+    }
+}
+
+$red-social: (
+    tw: skyblue,
+    fb: blue,
+    ig: blueviolet,
+    in: darkblue,
+    tk: violet,
+    youTube: red,
+    st: yellow
+);
+@each $nombre, $valor in $red-social {
+    .icon-#{$nombre} {
+        background-color: $valor;
+    }
+}
+
+$colores: (
+    principal: aqua,
+    base: black,
+    fondo: tomato
+);
+
+.box-muestra {
+    background-color: map-get($colores, fondo);
+}
+
+.galeria {
+    background: map-get($colores, base);
+}
+
+@mixin btn {
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+.btn--danger {
+    @include btn;
+    background: tomato;
+}
+.btn--info {
+    @include btn;
+    background: skyblue;
+}
+.btn--alert {
+    @include btn;
+    background: greenyellow;
+}
+
+@mixin btns ($col, $bg) {
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: $col;
+    background: $bg;
+}
+.btns--default {
+    @include btns( white, black)
+}
+
+.btns--invert {
+    @include btns( black, wheat)
+}
